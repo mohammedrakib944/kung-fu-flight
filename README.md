@@ -7,13 +7,14 @@ A modern, responsive flight search engine built with React, TypeScript, and Tail
 ✅ **Search & Results**: Comprehensive search interface with origin, destination, dates, and passenger selection
 ✅ **Live Price Graph**: Real-time price distribution chart that updates as filters are applied
 ✅ **Complex Filtering**: Multiple simultaneous filters including:
-  - Maximum price slider
-  - Airline selection
-  - Number of stops (non-stop, 1 stop, 2+ stops)
-  - Departure time (morning, afternoon, evening, night)
-✅ **Responsive Design**: Fully functional on mobile, tablet, and desktop
-✅ **Modern UI/UX**: Clean, intuitive interface with smooth interactions
-✅ **Real-time Updates**: Instant filter application with live graph updates
+
+- Maximum price slider
+- Airline selection
+- Number of stops (non-stop, 1 stop, 2+ stops)
+- Departure time (morning, afternoon, evening, night)
+  ✅ **Responsive Design**: Fully functional on mobile, tablet, and desktop
+  ✅ **Modern UI/UX**: Clean, intuitive interface with smooth interactions
+  ✅ **Real-time Updates**: Instant filter application with live graph updates
 
 ## Tech Stack
 
@@ -35,17 +36,20 @@ A modern, responsive flight search engine built with React, TypeScript, and Tail
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <your-repo-url>
 cd flight-search-engine
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -64,56 +68,35 @@ npm run preview
 This app can be deployed to any static hosting service:
 
 ### Vercel
+
 ```bash
 npm install -g vercel
 vercel
 ```
 
 ### Netlify
+
 ```bash
 npm install -g netlify-cli
 netlify deploy
 ```
 
-## Project Structure
-
-```
-flight-search-engine/
-├── src/
-│   ├── components/
-│   │   ├── SearchForm.tsx      # Flight search form with autocomplete
-│   │   ├── FlightCard.tsx      # Individual flight result display
-│   │   ├── PriceGraph.tsx      # Price distribution chart
-│   │   └── FilterPanel.tsx     # Filter controls sidebar
-│   ├── services/
-│   │   └── amadeusApi.ts       # Amadeus API integration
-│   ├── types/
-│   │   └── flight.ts           # TypeScript type definitions
-│   ├── utils/
-│   │   └── flightUtils.ts      # Helper functions for data processing
-│   ├── App.tsx                 # Main application component
-│   ├── main.tsx                # Application entry point
-│   └── index.css               # Global styles with Tailwind
-├── package.json
-├── tsconfig.json
-├── vite.config.ts
-├── tailwind.config.js
-└── README.md
-```
-
 ## Key Features Explained
 
 ### 1. Smart Airport Search
+
 - Real-time airport/city autocomplete
 - Debounced API calls for performance
 - Displays airport codes, city names, and countries
 
 ### 2. Dynamic Price Graph
+
 - Shows price distribution across all results
 - Updates instantly when filters are applied
 - Built with Recharts for smooth animations
 
 ### 3. Advanced Filtering System
+
 - **Price**: Slider to set maximum price
 - **Airlines**: Multi-select airline filtering
 - **Stops**: Filter by number of stops
@@ -121,6 +104,7 @@ flight-search-engine/
 - All filters work simultaneously and update in real-time
 
 ### 4. Responsive Design
+
 - Mobile-first approach
 - Adaptive layouts for all screen sizes
 - Touch-friendly controls
@@ -131,6 +115,7 @@ This project uses the Amadeus Self-Service Test API:
 
 **Authentication**: OAuth 2.0 Client Credentials flow
 **Endpoints Used**:
+
 - `/v1/security/oauth2/token` - Authentication
 - `/v1/reference-data/locations` - Airport search
 - `/v1/shopping/flight-offers` - Flight search
@@ -156,6 +141,7 @@ The API credentials are configured in `src/services/amadeusApi.ts`.
 ### Filter Implementation
 
 The filtering system is designed to be:
+
 - **Real-time**: Instant feedback as users adjust filters
 - **Combinatorial**: Multiple filters work together seamlessly
 - **Reversible**: Easy to clear individual or all filters
@@ -171,6 +157,7 @@ The filtering system is designed to be:
 ## Future Enhancements
 
 Potential improvements for production:
+
 - User authentication and saved searches
 - Flight comparison feature
 - Price alerts and tracking
@@ -193,11 +180,13 @@ To test the application:
 ## Troubleshooting
 
 ### API Issues
+
 - Ensure you're using test environment endpoints
 - Check API quota limits
 - Verify credentials are correct
 
 ### Build Issues
+
 - Delete `node_modules` and reinstall
 - Clear Vite cache: `rm -rf node_modules/.vite`
 - Ensure Node version is 16+

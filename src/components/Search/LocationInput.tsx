@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Plane } from 'lucide-react';
-import { Airport } from '../../types/flight';
-import { searchAirports } from '../../services/amadeusApi';
+import React, { useState, useEffect } from "react";
+import { Plane } from "lucide-react";
+import { Airport } from "../../types/flight";
+import { searchAirports } from "../../services/amadeusApi";
 
 interface LocationInputProps {
   label: string;
@@ -16,9 +16,11 @@ export const LocationInput: React.FC<LocationInputProps> = ({
   placeholder,
   value,
   onChange,
-  iconRotate
+  iconRotate,
 }) => {
-  const [inputValue, setInputValue] = useState(value ? `${value.name} (${value.iataCode})` : '');
+  const [inputValue, setInputValue] = useState(
+    value ? `${value.name} (${value.iataCode})` : "",
+  );
   const [results, setResults] = useState<Airport[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -32,7 +34,7 @@ export const LocationInput: React.FC<LocationInputProps> = ({
 
   useEffect(() => {
     const timer = setTimeout(async () => {
-      const displayValue = value ? `${value.name} (${value.iataCode})` : '';
+      const displayValue = value ? `${value.name} (${value.iataCode})` : "";
       if (inputValue.length >= 2 && inputValue !== displayValue) {
         const results = await searchAirports(inputValue);
         setResults(results);
@@ -54,11 +56,13 @@ export const LocationInput: React.FC<LocationInputProps> = ({
 
   return (
     <div className="relative group">
-      <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">
+      <label className="block text-xs font-medium text-gray-400 uppercase tracking-widest mb-2 ml-1">
         {label}
       </label>
       <div className="relative">
-        <Plane className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-primary-500 transition-colors ${iconRotate ? 'rotate-90' : ''}`} />
+        <Plane
+          className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-primary-500 transition-colors ${iconRotate ? "rotate-90" : ""}`}
+        />
         <input
           type="text"
           value={inputValue}
@@ -82,12 +86,16 @@ export const LocationInput: React.FC<LocationInputProps> = ({
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="font-bold text-white group-hover/item:text-primary-400 transition-colors">{airport.name}</div>
+                  <div className="font-medium text-white group-hover/item:text-primary-400 transition-colors">
+                    {airport.name}
+                  </div>
                   <div className="text-sm text-gray-400">
                     {airport.cityName}, {airport.countryName}
                   </div>
                 </div>
-                <div className="text-xs font-black bg-white/5 px-2 py-1 rounded text-primary-500">{airport.iataCode}</div>
+                <div className="text-xs font-semibold bg-white/5 px-2 py-1 rounded text-primary-500">
+                  {airport.iataCode}
+                </div>
               </div>
             </button>
           ))}

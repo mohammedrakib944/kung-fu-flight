@@ -115,7 +115,7 @@ const App: React.FC = () => {
             <div className="p-2 bg-gradient-to-br from-primary-500 to-accent-blue rounded-xl shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform">
               <PlaneTakeoff className="w-6 h-6 text-white" />
             </div>
-            <h1 className="text-2xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+            <h1 className="text-2xl font-semibold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
               Kung-fu Flight
             </h1>
           </div>
@@ -126,13 +126,13 @@ const App: React.FC = () => {
                 <a
                   key={item}
                   href="#"
-                  className="text-xs font-black uppercase tracking-[0.2em] text-gray-500 hover:text-white transition-colors"
+                  className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500 hover:text-white transition-colors"
                 >
                   {item}
                 </a>
               ))}
             </nav>
-            <button className="px-6 py-2.5 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary-500 hover:text-white transition-all shadow-xl shadow-white/5 hover:shadow-primary-500/20">
+            <button className="px-6 py-2.5 bg-white text-black text-[10px] font-semibold uppercase tracking-widest rounded-xl hover:bg-primary-500 hover:text-white transition-all shadow-xl shadow-white/5 hover:shadow-primary-500/20">
               Sign In
             </button>
           </div>
@@ -177,10 +177,10 @@ const App: React.FC = () => {
               <Info className="w-8 h-8 text-red-500" />
             </div>
             <div>
-              <h3 className="text-xl font-black text-white mb-1">
+              <h3 className="text-xl font-semibold text-white mb-1">
                 System Notice
               </h3>
-              <p className="text-red-400/80 font-bold">{error}</p>
+              <p className="text-red-400/80 font-medium">{error}</p>
             </div>
           </div>
         )}
@@ -208,10 +208,10 @@ const App: React.FC = () => {
                   <div className="w-24 h-24 border-2 border-primary-500/20 border-t-primary-500 rounded-full animate-spin" />
                   <PlaneTakeoff className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 text-primary-500" />
                 </div>
-                <h3 className="text-2xl font-black tracking-tight mb-2">
+                <h3 className="text-2xl font-semibold tracking-tight mb-2">
                   Analyzing Routes...
                 </h3>
-                <p className="text-gray-500 uppercase text-[10px] font-black tracking-[0.3em]">
+                <p className="text-gray-500 uppercase text-[10px] font-semibold tracking-[0.3em]">
                   Searching 500+ Luxury Airlines
                 </p>
               </div>
@@ -224,11 +224,11 @@ const App: React.FC = () => {
 
                 <div className="space-y-6">
                   <div className="flex items-center justify-between mb-8 px-4">
-                    <h3 className="text-2xl font-black tracking-tighter">
+                    <h3 className="text-2xl font-semibold tracking-tighter">
                       Available{" "}
                       <span className="text-primary-500">Curated</span> Options
                     </h3>
-                    <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest bg-white/5 px-4 py-2 rounded-full">
+                    <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest bg-white/5 px-4 py-2 rounded-full">
                       {filteredFlights.length} Voyages Found
                     </div>
                   </div>
@@ -237,7 +237,7 @@ const App: React.FC = () => {
                   ))}
                   {filteredFlights.length === 0 && (
                     <div className="text-center py-20 glass-card rounded-3xl border-dashed border-white/10">
-                      <p className="text-gray-500 font-bold">
+                      <p className="text-gray-500 font-medium">
                         No flights match your elite criteria.
                       </p>
                       <button
@@ -250,7 +250,7 @@ const App: React.FC = () => {
                             departureTime: "all",
                           })
                         }
-                        className="mt-4 text-primary-500 font-black uppercase text-[10px] tracking-widest hover:text-white transition-colors"
+                        className="mt-4 text-primary-500 font-semibold uppercase text-[10px] tracking-widest hover:text-white transition-colors"
                       >
                         Clear all filters
                       </button>
@@ -264,7 +264,7 @@ const App: React.FC = () => {
                   <div className="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center mb-8">
                     <PlaneTakeoff className="w-10 h-10 text-gray-700" />
                   </div>
-                  <h3 className="text-2xl font-black mb-2">
+                  <h3 className="text-2xl font-semibold mb-2">
                     Begin Your Journey
                   </h3>
                   <p className="text-gray-500 text-sm">

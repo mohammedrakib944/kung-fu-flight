@@ -1,5 +1,5 @@
-import React from 'react';
-import { Calendar } from 'lucide-react';
+import React from "react";
+import { Calendar } from "lucide-react";
 
 interface DateInputProps {
   label: string;
@@ -14,11 +14,11 @@ export const DateInput: React.FC<DateInputProps> = ({
   value,
   onChange,
   min,
-  required
+  required,
 }) => {
   return (
     <div className="relative group">
-      <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">
+      <label className="block text-xs font-medium text-gray-400 uppercase tracking-widest mb-2 ml-1">
         {label}
       </label>
       <div className="relative">

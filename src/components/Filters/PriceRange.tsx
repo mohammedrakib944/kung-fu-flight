@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface PriceRangeProps {
   value: number;
@@ -6,14 +6,18 @@ interface PriceRangeProps {
   onChange: (value: number) => void;
 }
 
-export const PriceRange: React.FC<PriceRangeProps> = ({ value, max, onChange }) => {
+export const PriceRange: React.FC<PriceRangeProps> = ({
+  value,
+  max,
+  onChange,
+}) => {
   return (
     <div className="mb-10">
       <div className="flex justify-between items-end mb-4">
-        <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
+        <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-[0.2em]">
           Max Price
         </label>
-        <span className="text-lg font-black text-primary-500 tracking-tighter">
+        <span className="text-lg font-semibold text-primary-500 tracking-tighter">
           ${value.toFixed(0)}
         </span>
       </div>
@@ -28,7 +32,7 @@ export const PriceRange: React.FC<PriceRangeProps> = ({ value, max, onChange }) 
           className="w-full h-1.5 bg-white/5 rounded-full appearance-none cursor-pointer accent-primary-600 focus:outline-none"
         />
       </div>
-      <div className="flex justify-between text-[10px] font-bold text-gray-500 mt-2 uppercase tracking-widest">
+      <div className="flex justify-between text-[10px] font-medium text-gray-500 mt-2 uppercase tracking-widest">
         <span>$0</span>
         <span>${max.toFixed(0)}</span>
       </div>

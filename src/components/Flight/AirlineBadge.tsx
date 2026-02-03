@@ -1,12 +1,15 @@
-import React from 'react';
-import { Plane } from 'lucide-react';
+import React from "react";
+import { Plane } from "lucide-react";
 
 interface AirlineBadgeProps {
   airlineName: string;
   airlineCodes: string[];
 }
 
-export const AirlineBadge: React.FC<AirlineBadgeProps> = ({ airlineName, airlineCodes }) => {
+export const AirlineBadge: React.FC<AirlineBadgeProps> = ({
+  airlineName,
+  airlineCodes,
+}) => {
   return (
     <div className="flex items-center gap-5 mb-10">
       <div className="relative">
@@ -17,13 +20,17 @@ export const AirlineBadge: React.FC<AirlineBadgeProps> = ({ airlineName, airline
         </div>
       </div>
       <div>
-        <div className="text-2xl font-black text-white tracking-tight leading-none mb-1">{airlineName}</div>
+        <div className="text-2xl font-semibold text-white tracking-tight leading-none mb-1">
+          {airlineName}
+        </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] bg-white/5 px-2 py-1 rounded border border-white/5">
-            {airlineCodes.join(', ')}
+          <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-[0.2em] bg-white/5 px-2 py-1 rounded border border-white/5">
+            {airlineCodes.join(", ")}
           </span>
           <div className="h-4 w-[1px] bg-white/10 mx-1"></div>
-          <span className="text-[10px] font-black text-primary-500 uppercase tracking-[0.2em]">Premium Economy</span>
+          <span className="text-[10px] font-semibold text-primary-500 uppercase tracking-[0.2em]">
+            Premium Economy
+          </span>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Users } from 'lucide-react';
+import React from "react";
+import { Users } from "lucide-react";
 
 interface PassengerSelectProps {
   label: string;
@@ -14,11 +14,11 @@ export const PassengerSelect: React.FC<PassengerSelectProps> = ({
   value,
   onChange,
   className = "",
-  showLabelQty = false
+  showLabelQty = false,
 }) => {
   return (
     <div className={`relative group ${className}`}>
-      <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">
+      <label className="block text-xs font-medium text-gray-400 uppercase tracking-widest mb-2 ml-1">
         {label}
       </label>
       <div className="relative">
@@ -30,7 +30,7 @@ export const PassengerSelect: React.FC<PassengerSelectProps> = ({
         >
           {[1, 2, 3, 4, 5, 6].map((num) => (
             <option key={num} value={num} className="bg-[#1a1d23]">
-              {showLabelQty ? num : `${num} ${num === 1 ? 'Adult' : 'Adults'}`}
+              {showLabelQty ? num : `${num} ${num === 1 ? "Adult" : "Adults"}`}
             </option>
           ))}
         </select>
