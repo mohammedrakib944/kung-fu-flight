@@ -1,12 +1,12 @@
-import { useState, useCallback, useMemo } from 'react';
-import { FlightOffer, SearchParams, FilterState } from '../types/flight';
-import { searchFlights } from '../services/amadeusApi';
+import { useState, useCallback, useMemo } from "react";
+import { FlightOffer, SearchParams, FilterState } from "../types/flight";
+import { amadeusService } from "../services/amadeusApi";
 
 const INITIAL_FILTERS: FilterState = {
   maxPrice: 2000,
   airlines: [],
   stops: [],
-  departureTime: 'all',
+  departureTime: "all",
 };
 
 export function useFlightSearch() {
@@ -19,17 +19,17 @@ export function useFlightSearch() {
     setIsLoading(true);
     setError(null);
     try {
-      const results = await searchFlights(params);
+      const results = await amadeusService.searchFlights(params);
       setFlights(results);
-      
+
       // Update initial max price based on results
       if (results.length > 0) {
-        const prices = results.map(f => parseFloat(f.price.total));
+        const prices = results.map((f) => parseFloat(f.price.total));
         const maxPrice = Math.max(...prices);
-        setFilters(prev => ({ ...prev, maxPrice }));
+        setFilters((prev) => ({ ...prev, maxPrice }));
       }
     } catch (err: any) {
-      setError(err.message || 'Failed to fetch flights');
+      setError(err.message || "Failed to fetch flights");
       setFlights([]);
     } finally {
       setIsLoading(false);
@@ -55,14 +55,20 @@ export function useFlightSearch() {
         }
       }
 
-      if (filters.departureTime !== 'all') {
-        const departureAt = new Date(flight.itineraries[0].segments[0].departure.at);
+      if (filters.departureTime !== "all") {
+        const departureAt = new Date(
+          flight.itineraries[0].segments[0].departure.at,
+        );
         const hour = departureAt.getHours();
 
-        if (filters.departureTime === 'morning' && (hour < 5 || hour >= 12)) return false;
-        if (filters.departureTime === 'afternoon' && (hour < 12 || hour >= 17)) return false;
-        if (filters.departureTime === 'evening' && (hour < 17 || hour >= 21)) return false;
-        if (filters.departureTime === 'night' && hour >= 5 && hour < 21) return false;
+        if (filters.departureTime === "morning" && (hour < 5 || hour >= 12))
+          return false;
+        if (filters.departureTime === "afternoon" && (hour < 12 || hour >= 17))
+          return false;
+        if (filters.departureTime === "evening" && (hour < 17 || hour >= 21))
+          return false;
+        if (filters.departureTime === "night" && hour >= 5 && hour < 21)
+          return false;
       }
 
       return true;
@@ -77,6 +83,6 @@ export function useFlightSearch() {
     filters,
     setFilters,
     performSearch,
-    INITIAL_FILTERS
+    INITIAL_FILTERS,
   };
 }

@@ -78,7 +78,7 @@ export const SearchForm: React.FC<SearchFormProps> = ({
 
       <TripTypeToggle value={tripType} onChange={setTripType} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-6">
         <LocationInput
           label="Origin"
           placeholder="City or airport"
@@ -115,7 +115,7 @@ export const SearchForm: React.FC<SearchFormProps> = ({
                 label="Qty"
                 value={adults}
                 onChange={setAdults}
-                className="w-24"
+                className="w-full"
                 showLabelQty
               />
             </>
