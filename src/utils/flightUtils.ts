@@ -1,5 +1,5 @@
 import { FlightOffer, PriceDataPoint, FilterState } from '../types/flight';
-import { format, parse } from 'date-fns';
+import { format } from 'date-fns';
 
 export function formatDuration(duration: string): string {
   // Duration format: PT10H30M
@@ -104,7 +104,7 @@ export function filterFlights(
   });
 }
 
-export function generatePriceData(flights: FlightOffer[]): PriceDataPoint[] {
+export function getPriceGroups(flights: FlightOffer[]): PriceDataPoint[] {
   if (flights.length === 0) return [];
 
   // Group flights by price ranges
