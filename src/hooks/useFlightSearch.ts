@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 import { FlightOffer, SearchParams, FilterState } from "../types/flight";
-import { amadeusService } from "../services/amadeusApi";
+import { searchFlights } from "../services/amadeusApi";
 
 const INITIAL_FILTERS: FilterState = {
   maxPrice: 2000,
@@ -19,12 +19,14 @@ export function useFlightSearch() {
     setIsLoading(true);
     setError(null);
     try {
-      const results = await amadeusService.searchFlights(params);
+      const results = await searchFlights(params);
       setFlights(results);
 
       // Update initial max price based on results
       if (results.length > 0) {
-        const prices = results.map((f) => parseFloat(f.price.total));
+        const prices = results.map((f: FlightOffer) =>
+          parseFloat(f.price.total),
+        );
         const maxPrice = Math.max(...prices);
         setFilters((prev) => ({ ...prev, maxPrice }));
       }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Plane } from "lucide-react";
 import { Airport } from "../../types/flight";
-import { amadeusService } from "../../services/amadeusApi";
+import { searchAirports } from "../../services/amadeusApi";
 
 interface LocationInputProps {
   label: string;
@@ -36,7 +36,7 @@ export const LocationInput: React.FC<LocationInputProps> = ({
     const timer = setTimeout(async () => {
       const displayValue = value ? `${value.name} (${value.iataCode})` : "";
       if (inputValue.length >= 2 && inputValue !== displayValue) {
-        const results = await amadeusService.searchAirports(inputValue);
+        const results = await searchAirports(inputValue);
         setResults(results);
         setShowDropdown(true);
       } else {
