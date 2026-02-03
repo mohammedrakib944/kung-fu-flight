@@ -104,15 +104,17 @@ export const SearchForm: React.FC<SearchFormProps> = ({ onSearch, isLoading }) =
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-      <div className="flex gap-4 mb-6">
+    <form onSubmit={handleSubmit} className="glass-card rounded-3xl p-8 relative overflow-hidden">
+      <div className="absolute top-0 right-0 -mt-12 -mr-12 w-48 h-48 bg-primary-600/10 rounded-full blur-3xl opacity-50"></div>
+      
+      <div className="flex gap-2 mb-8 p-1 bg-white/5 w-fit rounded-2xl border border-white/5">
         <button
           type="button"
           onClick={() => setTripType('roundtrip')}
-          className={`px-4 py-2 rounded-lg font-medium transition ${
+          className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${
             tripType === 'roundtrip'
-              ? 'bg-primary-600 text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/20'
+              : 'text-gray-400 hover:text-white hover:bg-white/5'
           }`}
         >
           Round Trip
@@ -120,46 +122,53 @@ export const SearchForm: React.FC<SearchFormProps> = ({ onSearch, isLoading }) =
         <button
           type="button"
           onClick={() => setTripType('oneway')}
-          className={`px-4 py-2 rounded-lg font-medium transition ${
+          className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${
             tripType === 'oneway'
-              ? 'bg-primary-600 text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/20'
+              : 'text-gray-400 hover:text-white hover:bg-white/5'
           }`}
         >
           One Way
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Origin */}
-        <div className="relative">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            <Plane className="inline w-4 h-4 mr-1" />
-            From
+        <div className="relative group">
+          <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">
+            Origin
           </label>
-          <input
-            type="text"
-            value={origin}
-            onChange={(e) => {
-              setOrigin(e.target.value);
-              setSelectedOrigin(null);
-            }}
-            placeholder="City or airport"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            required
-          />
+          <div className="relative">
+            <Plane className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-primary-500 transition-colors" />
+            <input
+              type="text"
+              value={origin}
+              onChange={(e) => {
+                setOrigin(e.target.value);
+                setSelectedOrigin(null);
+              }}
+              placeholder="City or airport"
+              className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-600/50 focus:border-primary-600/50 transition-all outline-none"
+              required
+            />
+          </div>
           {showOriginDropdown && originResults.length > 0 && (
-            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto">
+            <div className="absolute z-50 w-full mt-2 glass-card rounded-2xl overflow-hidden border border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
               {originResults.map((airport) => (
                 <button
                   key={airport.iataCode}
                   type="button"
                   onClick={() => selectOrigin(airport)}
-                  className="w-full text-left px-4 py-3 hover:bg-primary-50 border-b last:border-b-0"
+                  className="w-full text-left px-5 py-4 hover:bg-primary-600/20 transition-colors group/item"
                 >
-                  <div className="font-medium">{airport.name}</div>
-                  <div className="text-sm text-gray-600">
-                    {airport.cityName}, {airport.countryName} ({airport.iataCode})
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-bold text-white group-hover/item:text-primary-400 transition-colors">{airport.name}</div>
+                      <div className="text-sm text-gray-400">
+                        {airport.cityName}, {airport.countryName}
+                      </div>
+                    </div>
+                    <div className="text-xs font-black bg-white/5 px-2 py-1 rounded text-primary-500">{airport.iataCode}</div>
                   </div>
                 </button>
               ))}
@@ -168,34 +177,41 @@ export const SearchForm: React.FC<SearchFormProps> = ({ onSearch, isLoading }) =
         </div>
 
         {/* Destination */}
-        <div className="relative">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            <Plane className="inline w-4 h-4 mr-1 rotate-90" />
-            To
+        <div className="relative group">
+          <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">
+            Destination
           </label>
-          <input
-            type="text"
-            value={destination}
-            onChange={(e) => {
-              setDestination(e.target.value);
-              setSelectedDest(null);
-            }}
-            placeholder="City or airport"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            required
-          />
+          <div className="relative">
+            <Plane className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 rotate-90 group-focus-within:text-primary-500 transition-colors" />
+            <input
+              type="text"
+              value={destination}
+              onChange={(e) => {
+                setDestination(e.target.value);
+                setSelectedDest(null);
+              }}
+              placeholder="Where to?"
+              className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-600/50 focus:border-primary-600/50 transition-all outline-none"
+              required
+            />
+          </div>
           {showDestDropdown && destResults.length > 0 && (
-            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto">
+            <div className="absolute z-50 w-full mt-2 glass-card rounded-2xl overflow-hidden border border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
               {destResults.map((airport) => (
                 <button
                   key={airport.iataCode}
                   type="button"
                   onClick={() => selectDestination(airport)}
-                  className="w-full text-left px-4 py-3 hover:bg-primary-50 border-b last:border-b-0"
+                  className="w-full text-left px-5 py-4 hover:bg-primary-600/20 transition-colors group/item"
                 >
-                  <div className="font-medium">{airport.name}</div>
-                  <div className="text-sm text-gray-600">
-                    {airport.cityName}, {airport.countryName} ({airport.iataCode})
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-bold text-white group-hover/item:text-primary-400 transition-colors">{airport.name}</div>
+                      <div className="text-sm text-gray-400">
+                        {airport.cityName}, {airport.countryName}
+                      </div>
+                    </div>
+                    <div className="text-xs font-black bg-white/5 px-2 py-1 rounded text-primary-500">{airport.iataCode}</div>
                   </div>
                 </button>
               ))}
@@ -204,66 +220,115 @@ export const SearchForm: React.FC<SearchFormProps> = ({ onSearch, isLoading }) =
         </div>
 
         {/* Departure Date */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            <Calendar className="inline w-4 h-4 mr-1" />
+        <div className="relative group">
+          <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">
             Departure
           </label>
-          <input
-            type="date"
-            value={departureDate}
-            onChange={(e) => setDepartureDate(e.target.value)}
-            min={new Date().toISOString().split('T')[0]}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            required
-          />
-        </div>
-
-        {/* Return Date */}
-        {tripType === 'roundtrip' && (
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              <Calendar className="inline w-4 h-4 mr-1" />
-              Return
-            </label>
+          <div className="relative">
+            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-primary-500 transition-colors" />
             <input
               type="date"
-              value={returnDate}
-              onChange={(e) => setReturnDate(e.target.value)}
-              min={departureDate}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              value={departureDate}
+              onChange={(e) => setDepartureDate(e.target.value)}
+              min={new Date().toISOString().split('T')[0]}
+              className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-primary-600/50 transition-all [color-scheme:dark]"
+              required
             />
           </div>
-        )}
+        </div>
 
-        {/* Passengers */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            <Users className="inline w-4 h-4 mr-1" />
-            Passengers
-          </label>
-          <select
-            value={adults}
-            onChange={(e) => setAdults(Number(e.target.value))}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-          >
-            {[1, 2, 3, 4, 5, 6].map((num) => (
-              <option key={num} value={num}>
-                {num} {num === 1 ? 'Adult' : 'Adults'}
-              </option>
-            ))}
-          </select>
+        {/* Return Date / Passengers */}
+        <div className="flex gap-4">
+          {tripType === 'roundtrip' ? (
+            <div className="flex-1 relative group">
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">
+                Return
+              </label>
+              <div className="relative">
+                <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-primary-500 transition-colors" />
+                <input
+                  type="date"
+                  value={returnDate}
+                  onChange={(e) => setReturnDate(e.target.value)}
+                  min={departureDate}
+                  className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-primary-600/50 transition-all [color-scheme:dark]"
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="flex-1 relative group">
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">
+                Travelers
+              </label>
+              <div className="relative">
+                <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-primary-500 transition-colors" />
+                <select
+                  value={adults}
+                  onChange={(e) => setAdults(Number(e.target.value))}
+                  className="w-full pl-12 pr-10 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-primary-600/50 transition-all appearance-none"
+                >
+                  {[1, 2, 3, 4, 5, 6].map((num) => (
+                    <option key={num} value={num} className="bg-surface-100">
+                      {num} {num === 1 ? 'Adult' : 'Adults'}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
+          
+          {tripType === 'roundtrip' && (
+            <div className="w-24 relative group">
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">
+                Qty
+              </label>
+              <div className="relative">
+                <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-primary-500 transition-colors" />
+                <select
+                  value={adults}
+                  onChange={(e) => setAdults(Number(e.target.value))}
+                  className="w-full pl-10 pr-4 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-primary-600/50 transition-all appearance-none"
+                >
+                  {[1, 2, 3, 4, 5, 6].map((num) => (
+                    <option key={num} value={num} className="bg-surface-100">
+                      {num}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="mt-6 w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-4 px-6 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-      >
-        <Search className="w-5 h-5" />
-        {isLoading ? 'Searching...' : 'Search Flights'}
-      </button>
+      <div className="mt-8 flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-white/5 pt-8">
+        <div className="flex items-center gap-6">
+          <label className="flex items-center gap-2 cursor-pointer group">
+            <input type="checkbox" className="w-5 h-5 rounded-lg border-white/10 bg-white/5 text-primary-600 focus:ring-primary-600/50 transition-all" />
+            <span className="text-sm font-bold text-gray-400 group-hover:text-gray-200 transition-colors">Non-stop only</span>
+          </label>
+          <label className="flex items-center gap-2 cursor-pointer group">
+            <input type="checkbox" className="w-5 h-5 rounded-lg border-white/10 bg-white/5 text-primary-600 focus:ring-primary-600/50 transition-all" />
+            <span className="text-sm font-bold text-gray-400 group-hover:text-gray-200 transition-colors">Refundable</span>
+          </label>
+        </div>
+        
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full sm:w-auto min-w-[200px] relative group"
+        >
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-600 to-accent-blue rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+          <div className="relative flex items-center justify-center gap-3 px-10 py-4 bg-primary-600 hover:bg-primary-500 text-white font-black rounded-2xl transition disabled:opacity-50 disabled:cursor-not-allowed">
+            {isLoading ? (
+              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+            ) : (
+              <Search className="w-5 h-5" />
+            )}
+            <span className="uppercase tracking-widest text-xs">Search Skybound</span>
+          </div>
+        </button>
+      </div>
     </form>
   );
 };
