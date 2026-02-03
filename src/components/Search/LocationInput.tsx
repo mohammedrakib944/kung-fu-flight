@@ -76,7 +76,7 @@ export const LocationInput: React.FC<LocationInputProps> = ({
         />
       </div>
       {showDropdown && results.length > 0 && (
-        <div className="absolute z-50 w-full mt-2 bg-[#171c24] z-10 rounded-2xl overflow-y-auto max-h-[350px] border border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute z-50 w-full mt-2 glass-card z-10 rounded-2xl overflow-y-auto max-h-[350px] border border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
           {results.map((airport) => (
             <button
               key={airport.iataCode}

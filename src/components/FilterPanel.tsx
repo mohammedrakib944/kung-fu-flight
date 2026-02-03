@@ -56,7 +56,7 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
     filters.maxPrice < maxPrice;
 
   return (
-    <div className="bg-[#171c24] rounded-3xl p-8">
+    <div className="glass-card rounded-3xl p-8">
       <div className="flex items-center justify-between mb-8 overflow-hidden">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-primary-600/10 rounded-xl flex items-center justify-center border border-primary-500/20">

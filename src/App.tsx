@@ -217,7 +217,7 @@ const App: React.FC = () => {
               </div>
             ) : flights.length > 0 ? (
               <div className="space-y-12">
-                <section className="glass-card rounded-[2.5rem] p-10 relative overflow-hidden">
+                <section className="glass-card border border-white/10 rounded-2xl p-10 relative overflow-hidden">
                   <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary-600/5 rounded-full blur-3xl" />
                   <PriceGraph data={priceGroups} />
                 </section>
